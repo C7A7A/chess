@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* FIELD */
+
+.field {
+  background: transparent;
+  border: 1px solid transparent;
+  margin: 0;
+  padding: 0;
+  height: 64px;
+  width: 64px;
+}
+
+.field_cream {
+  background-color: #f6e4a4;
+}
+
+.field_green {
+  background-color: #145d4a;
+}

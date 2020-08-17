@@ -1,24 +1,35 @@
 import React from 'react'
-// import Field from './Field.js'
+import Field from './Field.js'
 
 function Board() {
     const board = []
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 1; i <= 8; i++) {
         const boardFields = []
-        for (let j = 0; j < 8; j++) {
-            boardFields.push(<span key ={i.toString() + j.toString()}> {(i + 1).toString() + (j + 1).toString() + '  '} </span>)
+        for (let j = 1; j <= 8; j++) {
+            boardFields.push(<Field key={i*8 + j} number={i.toString() + j.toString()} color={ ( (i+j) % 2 == 0 ) ? "field_cream" : "field_green"} />)
         }
-        board.push(<div key={i}> {boardFields} </div>)
+        // var testBoardFieldsMap = boardFields.map(field => field.props.children[1])
+        // console.log(testBoardFieldsMap)
+        
+        board.push(<div key={i} className="boardRow"> {boardFields} </div>)
     }
 
-    console.log(board.map(field => {
-        return field.props
-    }))
+    // console.log(board[0].boardFields[0].props.children[1].props.num)
+    // console.log(board)
+
+    // var testBoardMap = board.map(
+    //     item => {
+    //         var square = item.boardFields.map(field => field)
+    //         return square
+    //     }
+    // )
+
+    // console.log(testBoardMap)
 
     return (
-        <div>
-            {board}
+        <div className="board">
+            {board} 
         </div>
     )
 }
