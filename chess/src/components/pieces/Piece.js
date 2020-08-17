@@ -1,11 +1,10 @@
 import React from 'react'
 
-function Piece() {
-    return (
-        <div>
-            Piece
-        </div>
-    )
+class Piece {
+   constructor(player, image) {
+       this.player = player
+       this.style = {backgroundImage: "url('"+ image + "')"}
+   }
 }
 
 export default Piece

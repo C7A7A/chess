@@ -12,7 +12,7 @@ function Board() {
         // var testBoardFieldsMap = boardFields.map(field => field.props.children[1])
         // console.log(testBoardFieldsMap)
         
-        board.push(<div key={i} className="boardRow"> {boardFields} </div>)
+        board.push(<div key={i} className="boardRow row justify-content-center "> {boardFields} </div>)
     }
 
     // console.log(board[0].boardFields[0].props.children[1].props.num)
@@ -28,7 +28,7 @@ function Board() {
     // console.log(testBoardMap)
 
     return (
-        <div className="board">
+        <div className="board col-6 my-auto ">
             {board} 
         </div>
     )

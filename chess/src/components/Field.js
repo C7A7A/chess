@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Field({number, color}) {
-    const classes = `field ${color}`
+    const classes=`field ${color}`
 
     return (
         <button className={classes} >
