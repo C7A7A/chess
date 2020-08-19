@@ -1,11 +1,11 @@
-import React from 'react'
+import Piece from './Piece.js'
+import BlackRook from './svgImages/black_rook.svg'
+import WhiteRook from './svgImages/white_rook.svg'
 
-function Rook() {
-    return (
-        <div>
-            Rook   
-        </div>
-    )
+class Rook extends Piece {
+    constructor(player) {
+        super (player, (player === 1 ?  BlackRook : WhiteRook))
+    }
 }
 
 export default Rook

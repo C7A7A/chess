@@ -1,11 +1,14 @@
 import React from 'react'
 
-function Field({number, color}) {
+function Field({number, color, piece}) {
     const classes=`field ${color}`
 
     return (
-        <button className={classes} >
-            {number}
+        <button className={classes} 
+            key={number}
+            style={piece}
+        >
+            
         </button>
     )
 }
