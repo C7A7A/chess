@@ -1,32 +1,35 @@
 import React from 'react'
-import Field from './Field.js'
+import Square from './Square.js'
 
-function Board({pieces}) {
+function Board({pieces, handleClick}) {
     const board = []
 
     // console.log(pieces)
+    // console.log(handleClick)
 
     for (let i = 0; i < 8; i++) {
-        const boardFields = []
+        const boardSquares = []
         for (let j = 0; j < 8; j++) {
 
-            boardFields.push(<Field key={(i*8) + 1 + j} 
-                                number={i.toString() + j.toString()} 
-                                color={ ( (i+j) % 2 === 0 ) ? "field_cream" : "field_green"} 
-                                piece={ pieces[(i*8) + j] ? pieces[(i*8) + j].style : null}
+            boardSquares.push(<Square 
+                                key={(i*8) + j} // (i*8) + j = 0, 1 ... 62, 63 
+                                number={(i*8) + j} 
+                                color={( (i+j) % 2 === 0 ) ? "square_cream" : "square_green"} 
+                                piece={pieces[(i*8) + j] ? pieces[(i*8) + j].style : null}
+                                onClick={() => {handleClick((i*8) + j)}}
                             />
             )
         }
         
-        board.push(<div key={i} className="boardRow row justify-content-center "> {boardFields} </div>)
+        board.push(<div key={i} className="boardRow row justify-content-center "> {boardSquares} </div>)
     }
 
-    // console.log(board[0].boardFields[0].props.children[1].props.num)
+    // console.log(board[0].boardSquares[0].props.children[1].props.num)
     // console.log(board)
 
     // var testBoardMap = board.map(
     //     item => {
-    //         var square = item.boardFields.map(field => field)
+    //         var square = item.boardSquares.map(square => square)
     //         return square
     //     }
     // )

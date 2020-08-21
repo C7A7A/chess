@@ -24,9 +24,9 @@ code {
 /* APP */
 
 
-/* FIELD */
+/* Square */
 
-.field {
+.square {
   background: transparent;
   border: 1px solid transparent;
   margin: 0;
@@ -40,10 +40,10 @@ code {
   background-position: 50% 50%;
 }
 
-.field_cream {
+.square_cream {
   background-color: #f6e4a4;
 }
 
-.field_green {
+.square_green {
   background-color: #145d4a;
 }
