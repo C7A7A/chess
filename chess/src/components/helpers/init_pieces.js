@@ -6,7 +6,14 @@ import Queen from '../pieces/Queen.js'
 import Rook from '../pieces/Rook.js'
 
 function init_pieces() {
-    const pieces = Array(64).fill(null)
+    const pieces = Array(64)
+
+    for (let i = 0; i < pieces.length; i++) {
+        pieces[i] = {
+            style: { backgroundColor: " "},
+            key: i
+        }
+    }
 
     pieces[0] = new Rook(1)
     pieces[7] = new Rook(1)
@@ -30,11 +37,11 @@ function init_pieces() {
     pieces[60] = new King(2)
 
     for (let i = 8; i < 16; i++) {
-        pieces[i] = new Pawn(1)
+        pieces[i] = new Pawn(1, i)
     }
 
     for (let i = 48; i < 56; i++) {
-        pieces[i] = new Pawn(2)
+        pieces[i] = new Pawn(2, i)
     }
 
     return pieces
