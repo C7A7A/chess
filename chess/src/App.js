@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Board from './components/Board.js'
 import init_pieces from './components/helpers/init_pieces.js'
@@ -11,7 +11,7 @@ function App() {
   const [clearPossibleMoves, setClearPossibleMoves] = useState([])
   
 
-  console.log(pieces)
+  // console.log(pieces)
 
   const handleCLickMove = (pos) => {
     // check if selected square is empty square and check if any square was previosuly selected
@@ -22,7 +22,7 @@ function App() {
           setSelectedSquare(pos)
       
           const possibleMoves = pieces[pos].possibleMoves(pieces, pos)
-          console.log(possibleMoves)
+          // console.log(possibleMoves)
           possibleMoves.map(move => pieces[move].style = { ...pieces[move].style, backgroundColor: "#eb9626"})
           setClearPossibleMoves(possibleMoves)
 

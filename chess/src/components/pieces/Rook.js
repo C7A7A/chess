@@ -1,6 +1,7 @@
 import Piece from './Piece.js'
 import BlackRook from './svgImages/black_rook.svg'
 import WhiteRook from './svgImages/white_rook.svg'
+import get_moves_column_row from '../helpers/get_moves_column_row.js'
 
 class Rook extends Piece {
     constructor(player) {
@@ -8,32 +9,7 @@ class Rook extends Piece {
     }
 
     possibleMoves(pieces, position) {
-        const possibleMoves = []
-        
-        const squaresUp = position / 8
-        const squaresDown = 7 - squaresUp
-        const squaresLeft = position % 8
-        const squaresRight = 7 - squaresLeft
-
-        // all possible moves UP
-        for (let i = 1; i <= squaresUp; i++) {
-            possibleMoves.push(position - (i*8))
-        }
-
-        // all possible moves DOWN
-        for (let i = 1; i <= squaresDown; i++) {
-            possibleMoves.push(position + (i*8))
-        }
-
-        // all possible moves LEFT
-        for (let i = 1; i <= squaresLeft; i++) {
-            possibleMoves.push(position - i)
-        }
-
-        // all possible moves RIGHT
-        for (let i = 1; i <= squaresRight; i++) {
-            possibleMoves.push(position + i)
-        }
+        const possibleMoves = get_moves_column_row(position)
 
         return possibleMoves
     }
