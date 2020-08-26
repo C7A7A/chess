@@ -32,12 +32,10 @@ function App() {
           //   setPlayer(2)
           // }
 
-          return
 
         } else {
 
           console.log('It`s your opponent`s turn')
-          return
         }
     } else {
        // check if any square is selected
