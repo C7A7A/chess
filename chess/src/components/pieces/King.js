@@ -2,6 +2,7 @@ import Piece from './Piece.js'
 import BlackKing from './svgImages/black_king.svg'
 import WhiteKing from './svgImages/white_king.svg'
 import get_squares_up_down_left_right from '../helpers/get_squares_up_down_left_rigt.js'
+import remove_squares_with_pieces_on from '../helpers/remove_squares_with_pieces_on.js'
 
 class King extends Piece {
     constructor(player) {
@@ -9,7 +10,7 @@ class King extends Piece {
     }
 
     possibleMoves(pieces, position) {
-        const possibleMoves = []
+        var possibleMoves = []
 
         const [squaresUp, squaresDown, squaresLeft, squaresRight] = get_squares_up_down_left_right(position)
         
@@ -38,7 +39,8 @@ class King extends Piece {
             possibleMoves.push(position - 1)
         }
 
-        console.log(possibleMoves)
+        possibleMoves = remove_squares_with_pieces_on(pieces, possibleMoves, this.player)
+
         return possibleMoves
     }
 }
