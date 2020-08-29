@@ -15,7 +15,7 @@ function App() {
   console.log(pieces)
 
   const handleCLickMove = (pos) => {
-    // check if selected square is empty square and check if any square was previosuly selected
+    // check if selected square is empty and if any piece was previosuly selected
     if (pieces[pos].player && selectedSquare === -1) { 
         if (pieces[pos].player === player) {
 
@@ -34,7 +34,7 @@ function App() {
     } else {
        // check if any square is selected
       if (selectedSquare !== -1) {
-        // check if square is correct move
+        // check if piece can move to square
         if (possibleMoves.includes(pieces[pos].key)) {
           // console.log(possibleMoves, pieces[pos])
           updatePieces(pieces[pos].key)
