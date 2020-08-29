@@ -3,7 +3,7 @@ function remove_squares_with_pieces_on(pieces, possibleMoves, player) {
 
     // TODO: change loop to filter/map
     for (let i = 0; i < possibleMoves.length; i++) {
-        var move = possibleMoves[i]
+        const move = possibleMoves[i]
         if (pieces[move].player) {
             if (pieces[move].player === player) {
                 incorrectMoves.push(move)
@@ -13,8 +13,8 @@ function remove_squares_with_pieces_on(pieces, possibleMoves, player) {
 
     possibleMoves = possibleMoves.filter( (move) => !incorrectMoves.includes(move))
 
-    console.log(incorrectMoves)
-    console.log(possibleMoves)
+    // console.log(incorrectMoves)
+    // console.log(possibleMoves)
 
     return possibleMoves
 }

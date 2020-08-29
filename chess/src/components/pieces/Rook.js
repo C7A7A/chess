@@ -9,7 +9,7 @@ class Rook extends Piece {
     }
 
     possibleMoves(pieces, position) {
-        const possibleMoves = get_moves_column_row(position)
+        const possibleMoves = get_moves_column_row(pieces, position, this.player)
 
         return possibleMoves
     }

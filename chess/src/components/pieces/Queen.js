@@ -12,7 +12,7 @@ class Queen extends Piece {
     possibleMoves(pieces, position) {
         const possibleMoves = []
 
-        possibleMoves.push(...get_moves_column_row(position), ...get_moves_diagonally(position))
+        possibleMoves.push(...get_moves_column_row(pieces, position, this.player), ...get_moves_diagonally(pieces, position, this.player))
 
         return possibleMoves
     }

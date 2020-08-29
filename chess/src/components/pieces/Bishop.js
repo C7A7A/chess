@@ -9,7 +9,7 @@ class Bishop extends Piece {
     }
 
     possibleMoves(pieces, position) {
-        const possibleMoves = get_moves_diagonally(position)
+        const possibleMoves = get_moves_diagonally(pieces, position, this.player)
 
         return possibleMoves
     }
