@@ -4,8 +4,8 @@ import WhiteBishop from './svgImages/white_bishop.svg'
 import get_moves_diagonally from '../helpers/get_moves_diagonally.js'
 
 class Bishop extends Piece {
-    constructor(player) {
-        super (player, (player === 1 ?  BlackBishop : WhiteBishop))
+    constructor(player, key) {
+        super (player, (player === 1 ?  BlackBishop : WhiteBishop), key)
     }
 
     possibleMoves(pieces, position) {

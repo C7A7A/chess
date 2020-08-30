@@ -5,8 +5,8 @@ import get_squares_up_down_left_right from '../helpers/get_squares_up_down_left_
 import remove_squares_with_pieces_on from '../helpers/remove_squares_with_pieces_on.js'
 
 class King extends Piece {
-    constructor(player) {
-        super (player, (player === 1 ?  BlackKing : WhiteKing))
+    constructor(player, key) {
+        super (player, (player === 1 ?  BlackKing : WhiteKing), key)
     }
 
     possibleMoves(pieces, position) {

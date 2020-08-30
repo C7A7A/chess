@@ -2,46 +2,66 @@ import Piece from './Piece.js'
 import BlackPawn from './svgImages/black_pawn.svg'
 import WhitePawn from './svgImages/white_pawn.svg'
 import remove_squares_with_pieces_on from '../helpers/remove_squares_with_pieces_on.js'
+import check_is_piece_blocking from '../helpers/check_is_piece_blocking.js'
 
 class Pawn extends Piece {
-    constructor(player, initPosition) {
-        super (player, (player === 1 ?  BlackPawn : WhitePawn))
-        this.initPosition = initPosition
+    constructor(player, key) {
+        super (player, (player === 1 ?  BlackPawn : WhitePawn), key)
+        this.initialSquare = key
     }
 
     possibleMoves(pieces, position) {
         var possibleMoves = []
         var isInitPosition = true
+        var isPieceBlocking = ''
 
         // check if pawn is on his initial position
-        if (this.initPosition !== position) { 
+        if (this.initialSquare !== position) { 
             isInitPosition = false
         }
 
         if (this.player === 1) {
-            possibleMoves.push(position + 8)
-            if (isInitPosition) {
-                possibleMoves.push(position + 16)
+
+            // check if there is any piece in front of pawn
+            isPieceBlocking = check_is_piece_blocking(pieces, position + 8, this.player)
+            if (isPieceBlocking === 'false') {
+                possibleMoves.push(position + 8)
+            }
+            // check if pawn is on his initial position and if there is any piece in front of pawn 
+            if (isInitPosition && isPieceBlocking === 'false') {
+                // check if there is any piece 2 squares in front of pawn
+                let isPieceBlocking2 = check_is_piece_blocking(pieces, position + 16, this.player)
+                if (isPieceBlocking2 === 'false') {
+                    possibleMoves.push(position + 16)
+                }
             }
 
+            // top-right diagonally
             if (pieces[position + 8 + 1].player === 2) {
                 possibleMoves.push(position + 9)
             }
-
+            // top-left diagonally
             if (pieces[position + 8 - 1].player === 2) {
                 possibleMoves.push(position + 7)
             }
-
         } else {
-            possibleMoves.push(position - 8)
-            if (isInitPosition) {
-                possibleMoves.push(position - 16)
+
+            isPieceBlocking = check_is_piece_blocking(pieces, position - 8, this.player)
+            if (isPieceBlocking === 'false') {
+                possibleMoves.push(position - 8)
+            }
+            if (isInitPosition && isPieceBlocking === 'false') {
+                let isPieceBlocking2 = check_is_piece_blocking(pieces, position - 16, this.player)
+                if (isPieceBlocking2 === 'false') {
+                    possibleMoves.push(position - 16)
+                }
             }
 
+            // bottom-left diagonally
             if (pieces[position - 8 - 1].player === 1) {
                 possibleMoves.push(position - 9)
             }
-
+            // bottom-right diagonally
             if (pieces[position - 8 + 1].player === 1) {
                 possibleMoves.push(position - 7)
             }

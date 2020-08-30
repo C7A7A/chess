@@ -5,8 +5,8 @@ import get_moves_column_row from '../helpers/get_moves_column_row.js'
 import get_moves_diagonally from '../helpers/get_moves_diagonally.js'
 
 class Queen extends Piece {
-    constructor(player) {
-        super (player, (player === 1 ?  BlackQueen : WhiteQueen))
+    constructor(player, key) {
+        super (player, (player === 1 ?  BlackQueen : WhiteQueen), key)
     }
 
     possibleMoves(pieces, position) {

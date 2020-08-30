@@ -1,7 +1,19 @@
-- pawns can move through other pieces when they are on the initial square
-- pieces can`t "kill" each other
+MAIN GAME:
 - function that check for check
 - game goal
 - castling
-- JAK BĘDZIE MI SIĘ CHCIAŁO En Passant
+- En Passant
 - pawn promotion
+- alerts for players (check, mate, turn, etc)
+
+INFO:
+- "death" pieces
+- panel with moves
+
+OPTIONS:
+- timer
+- pawn swarm
+- pawns can`t "kill"
+- king is killable (who kills all pieces wins)
+
+FIX BUGS:

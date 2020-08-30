@@ -32,8 +32,8 @@ function App() {
           console.log('It`s your opponent`s turn')
         }
     } else {
-       // check if any square is selected
-      if (selectedSquare !== -1) {
+      // check if any square is selected
+      if (selectedSquare !== -1) {        
         // check if piece can move to square
         if (possibleMoves.includes(pieces[pos].key)) {
           // console.log(possibleMoves, pieces[pos])
@@ -50,12 +50,16 @@ function App() {
 
   const updatePieces = (key) => {
     let newPieces = [...pieces]
-    newPieces[key] = selectedPiece
+
+    newPieces[key] = selectedPiece // move selected piece to selected square
+    newPieces[key].key = key // change initial key to new key
+
+    // change old square of selected piece to "inactive"
     newPieces[selectedSquare] = {
       style: { backgroundColor: ""},
       key: selectedSquare
     }
-    // console.log(newPieces)
+
     setPieces(newPieces)
 
     if (player === 2) {

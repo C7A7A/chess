@@ -5,8 +5,8 @@ import get_squares_up_down_left_rigt from '../helpers/get_squares_up_down_left_r
 import remove_squares_with_pieces_on from '../helpers/remove_squares_with_pieces_on.js'
 
 class Knight extends Piece {
-    constructor(player) {
-        super (player, (player === 1 ?  BlackKnight : WhiteKnight))
+    constructor(player, key) {
+        super (player, (player === 1 ?  BlackKnight : WhiteKnight), key)
     }
 
     possibleMoves(pieces, position) {
