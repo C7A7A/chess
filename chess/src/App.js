@@ -12,7 +12,7 @@ function App() {
   const [possibleMoves, setPossibleMoves] = useState([])
   
 
-  console.log(pieces)
+  // console.log(pieces)
 
   const handleCLickMove = (pos) => {
     // check if selected square is empty and if any piece was previosuly selected
@@ -62,11 +62,11 @@ function App() {
 
     setPieces(newPieces)
 
-    if (player === 2) {
-      setPlayer(1)
-    } else {
-      setPlayer(2)
-    }
+    // if (player === 2) {
+    //   setPlayer(1)
+    // } else {
+    //   setPlayer(2)
+    // }
   }
 
   return (

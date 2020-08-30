@@ -10,7 +10,7 @@ function get_moves_diagonally(pieces, position, player) {
     var squaresHelper = 0
     var isPieceBlocking = ''
     // get moves diagonally top-right
-    while ( (positionHelper - 7) >= 7 && squaresHelper < squaresRight) {
+    while ( (positionHelper - 7) >= 1 && squaresHelper < squaresRight) {
         isPieceBlocking = check_is_piece_blocking(pieces, positionHelper - 7, player)
         
         if (isPieceBlocking === 'false') {
@@ -50,7 +50,7 @@ function get_moves_diagonally(pieces, position, player) {
     positionHelper = position
     squaresHelper = 0
     // get moves diagonally bottom-left
-    while ( (positionHelper + 7) <= 56 && squaresHelper < squaresLeft) {
+    while ( (positionHelper + 7) <= 62 && squaresHelper < squaresLeft) {
         isPieceBlocking = check_is_piece_blocking(pieces, positionHelper + 7, player)
         
         if (isPieceBlocking === 'false') {
