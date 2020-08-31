@@ -62,11 +62,11 @@ function App() {
 
     setPieces(newPieces)
 
-    // if (player === 2) {
-    //   setPlayer(1)
-    // } else {
-    //   setPlayer(2)
-    // }
+    if (player === 2) {
+      setPlayer(1)
+    } else {
+      setPlayer(2)
+    }
   }
 
   return (
