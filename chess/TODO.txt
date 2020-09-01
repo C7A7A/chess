@@ -1,5 +1,4 @@
 MAIN GAME:
-- function that check for check
 - game goal
 - castling
 - En Passant
@@ -21,3 +20,6 @@ OPTIONS:
 - king is killable (who kills all pieces wins)
 
 FIX BUGS:
+
+DONE?
+- function that check for check

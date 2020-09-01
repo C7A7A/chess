@@ -37,7 +37,7 @@ function Board({pieces, handleClick}) {
     // console.log(testBoardMap)
 
     return (
-        <div className="board col-6 my-auto ">
+        <div className="board my-auto">
             {board} 
         </div>
     )

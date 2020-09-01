@@ -7,6 +7,8 @@ import remove_squares_with_pieces_on from '../../helpers/remove_squares_with_pie
 class King extends Piece {
     constructor(player, key) {
         super (player, (player === 1 ?  BlackKing : WhiteKing), key)
+        this.king = true
+        this.initialSquare = key
     }
 
     possibleMoves(pieces, position) {

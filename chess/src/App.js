@@ -1,7 +1,11 @@
-import React, {useState} from 'react';
-import './App.css';
+import React, {useState} from 'react'
+import './App.css'
+
 import Board from './components/Board.js'
+import PlayerInfo from './components/PlayerInfo.js'
 import init_pieces from './helpers/init_pieces.js'
+import check_are_moves_valid from './helpers/check_are_moves_valid.js'
+
 
 function App() {
 
@@ -11,7 +15,6 @@ function App() {
   const [player, setPlayer] = useState(2)
   const [possibleMoves, setPossibleMoves] = useState([])
   
-
   // console.log(pieces)
 
   const handleCLickMove = (pos) => {
@@ -23,7 +26,8 @@ function App() {
           setSelectedSquare(pos)
           setSelectedPiece(pieces[pos])
       
-          const moves = pieces[pos].possibleMoves(pieces, pos)
+          let moves = pieces[pos].possibleMoves(pieces, pos)
+          moves = check_are_moves_valid(pieces, moves, player, pos)
           // console.log(possibleMoves)
           moves.map(move => pieces[move].style = { ...pieces[move].style, backgroundColor: "#eb9626"})
           setPossibleMoves(moves)
@@ -38,6 +42,7 @@ function App() {
         if (possibleMoves.includes(pieces[pos].key)) {
           // console.log(possibleMoves, pieces[pos])
           updatePieces(pieces[pos].key)
+          updatePlayer()
         }
 
         pieces[selectedSquare].style = { ...pieces[selectedSquare].style, backgroundColor: ""} // clear bg color of last selected piece
@@ -61,7 +66,9 @@ function App() {
     }
 
     setPieces(newPieces)
+  }
 
+  const updatePlayer = () => {
     if (player === 2) {
       setPlayer(1)
     } else {
@@ -77,10 +84,14 @@ function App() {
           INFO
         </div>
 
-        <Board 
-          pieces={pieces} 
-          handleClick={handleCLickMove}
-        />
+        <div className="col-6">
+          <PlayerInfo player={1} />
+          <Board 
+            pieces={pieces} 
+            handleClick={handleCLickMove}
+          />
+          <PlayerInfo player={2} />
+        </div>
 
         <div className="col-3">
           OPTIONS
