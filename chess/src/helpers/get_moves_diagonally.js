@@ -1,4 +1,4 @@
-import get_squares_up_down_left_rigt from '../helpers/get_squares_up_down_left_rigt.js'
+import get_squares_up_down_left_rigt from './get_squares_up_down_left_rigt.js'
 import check_is_piece_blocking from './check_is_piece_blocking.js'
 
 function get_moves_diagonally(pieces, position, player) {

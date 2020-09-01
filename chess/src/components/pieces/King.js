@@ -1,8 +1,8 @@
 import Piece from './Piece.js'
-import BlackKing from './svgImages/black_king.svg'
-import WhiteKing from './svgImages/white_king.svg'
-import get_squares_up_down_left_right from '../helpers/get_squares_up_down_left_rigt.js'
-import remove_squares_with_pieces_on from '../helpers/remove_squares_with_pieces_on.js'
+import BlackKing from '../../assets/svgImages/black_king.svg'
+import WhiteKing from '../../assets/svgImages/white_king.svg'
+import get_squares_up_down_left_right from '../../helpers/get_squares_up_down_left_rigt.js'
+import remove_squares_with_pieces_on from '../../helpers/remove_squares_with_pieces_on.js'
 
 class King extends Piece {
     constructor(player, key) {

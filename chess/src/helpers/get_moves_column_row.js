@@ -1,5 +1,5 @@
-import get_squares_up_down_left_rigt from '../helpers/get_squares_up_down_left_rigt.js'
-import check_is_piece_blocking from '../helpers/check_is_piece_blocking.js'
+import get_squares_up_down_left_rigt from './get_squares_up_down_left_rigt.js'
+import check_is_piece_blocking from './check_is_piece_blocking.js'
 
 function get_moves_column_row(pieces, position, player) {
     const possibleMoves = []

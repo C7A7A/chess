@@ -1,8 +1,8 @@
 import Piece from './Piece.js'
-import BlackKnight from './svgImages/black_knight.svg'
-import WhiteKnight from './svgImages/white_knight.svg'
-import get_squares_up_down_left_rigt from '../helpers/get_squares_up_down_left_rigt.js'
-import remove_squares_with_pieces_on from '../helpers/remove_squares_with_pieces_on.js'
+import BlackKnight from '../../assets/svgImages/black_knight.svg'
+import WhiteKnight from '../../assets/svgImages/white_knight.svg'
+import get_squares_up_down_left_rigt from '../../helpers/get_squares_up_down_left_rigt.js'
+import remove_squares_with_pieces_on from '../../helpers/remove_squares_with_pieces_on.js'
 
 class Knight extends Piece {
     constructor(player, key) {

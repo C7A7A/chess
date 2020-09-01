@@ -1,9 +1,9 @@
-import Bishop from '../pieces/Bishop.js'
-import King from '../pieces/King.js'
-import Knight from '../pieces/Knight.js'
-import Pawn from '../pieces/Pawn.js'
-import Queen from '../pieces/Queen.js'
-import Rook from '../pieces/Rook.js'
+import Bishop from '../components/pieces/Bishop.js'
+import King from '../components/pieces/King.js'
+import Knight from '../components/pieces/Knight.js'
+import Pawn from '../components/pieces/Pawn.js'
+import Queen from '../components/pieces/Queen.js'
+import Rook from '../components/pieces/Rook.js'
 
 function init_pieces() {
     const pieces = Array(64)

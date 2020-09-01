@@ -1,7 +1,7 @@
 import Piece from './Piece.js'
-import BlackRook from './svgImages/black_rook.svg'
-import WhiteRook from './svgImages/white_rook.svg'
-import get_moves_column_row from '../helpers/get_moves_column_row.js'
+import BlackRook from '../../assets/svgImages/black_rook.svg'
+import WhiteRook from '../../assets/svgImages/white_rook.svg'
+import get_moves_column_row from '../../helpers/get_moves_column_row.js'
 
 class Rook extends Piece {
     constructor(player, key) {

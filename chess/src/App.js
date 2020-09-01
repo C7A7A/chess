@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import Board from './components/Board.js'
-import init_pieces from './components/helpers/init_pieces.js'
+import init_pieces from './helpers/init_pieces.js'
 
 function App() {
 

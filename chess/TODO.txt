@@ -5,6 +5,10 @@ MAIN GAME:
 - En Passant
 - pawn promotion
 - alerts for players (check, mate, turn, etc)
+- button -> surrender
+- button -> offer draw
+- stalemate
+- threefold repetition
 
 INFO:
 - "death" pieces

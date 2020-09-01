@@ -1,8 +1,8 @@
 import Piece from './Piece.js'
-import BlackPawn from './svgImages/black_pawn.svg'
-import WhitePawn from './svgImages/white_pawn.svg'
-import remove_squares_with_pieces_on from '../helpers/remove_squares_with_pieces_on.js'
-import check_is_piece_blocking from '../helpers/check_is_piece_blocking.js'
+import BlackPawn from '../../assets/svgImages/black_pawn.svg'
+import WhitePawn from '../../assets/svgImages/white_pawn.svg'
+import remove_squares_with_pieces_on from '../../helpers/remove_squares_with_pieces_on.js'
+import check_is_piece_blocking from '../../helpers/check_is_piece_blocking.js'
 
 class Pawn extends Piece {
     constructor(player, key) {
