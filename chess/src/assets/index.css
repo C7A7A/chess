@@ -63,4 +63,18 @@ code {
   left: auto !important;
 }
 
+.button_turn {
+  cursor: default !important;
+}
+
+.white_turn {
+  background-color: rgb(240, 239, 239) !important;
+  color: black !important;
+}
+
+.black_turn {
+  background-color: rgb(20, 19, 19) !important;
+  color: white !important;
+}
+
 

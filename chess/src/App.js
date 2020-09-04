@@ -6,7 +6,6 @@ import PlayerInfo from './components/PlayerInfo.js'
 import init_pieces from './helpers/init_pieces.js'
 import check_are_moves_valid from './helpers/check_are_moves_valid.js'
 
-
 function App() {
 
   const [pieces, setPieces] = useState(init_pieces())

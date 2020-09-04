@@ -10,7 +10,7 @@ function Square({number, color, piece, onClick}) {
             style={piece}
             onClick={onClick}
         >
-            {number}
+            
         </button>
     )
 }

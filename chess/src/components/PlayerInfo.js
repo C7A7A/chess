@@ -4,14 +4,10 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 function PlayerInfo({ player, turn }) {
     const [open, setOpen] = useState(false)
 
-    const [draw, setDraw] = useState('Offer')
+    // const [draw, setDraw] = useState(false)
 
-    const turnClassName = (turn === 'white') ? 'grey' : 'black' 
+    const turnClassName = (turn === 'white') ? 'white_turn' : 'black_turn' 
     const playerClassName = (player === 1) ? 'black_pieces' : 'white_pieces'
-
-    const offerDraw = (draw) => {
-        console.log("XD")
-    }
 
     return (
         <div className="col-12 m-2">
@@ -22,7 +18,7 @@ function PlayerInfo({ player, turn }) {
                 size='small'
                 trigger={<Button className={`red button_player ${playerClassName}`}> Surrender </Button>}
             >
-                <Header icon>
+                <Header>
                     Surrender
                 </Header>
                 <Modal.Content>
@@ -39,8 +35,8 @@ function PlayerInfo({ player, turn }) {
                     </Button>
                 </Modal.Actions>
             </Modal>
-            <Button className={`secondary button_player ${playerClassName}`} onClick={offerDraw}> {draw} Draw </Button>
-            <Button className='button_player' color={turnClassName} disabled> Turn - {turn}</Button>
+            {/* <Button className={`primary button_player ${playerClassName}`} onClick={() => setDraw(true)} disabled={draw}> Offer Draw </Button> */}
+            <Button className={`button_player button_turn ${turnClassName}`}> {turn} </Button>
         </div>
     )
 }
