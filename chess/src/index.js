@@ -4,8 +4,11 @@ import './assets/index.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// Importing bootstrap
+// Import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+// Import react-semantic-ui
+import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,11 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
-function PlayerInfo({ player }) {
+function PlayerInfo({ player, turn }) {
+    const [open, setOpen] = useState(false)
+
+    const [draw, setDraw] = useState('Offer')
+
+    const turnClassName = (turn === 'white') ? 'grey' : 'black' 
+    const playerClassName = (player === 1) ? 'black_pieces' : 'white_pieces'
+
+    const offerDraw = (draw) => {
+        console.log("XD")
+    }
+
     return (
         <div className="col-12 m-2">
-            <button type="button" className="btn btn-danger mr-1 font-weight-bold button_player"> Surrender </button>
-            <button type="button" className="btn btn-info mr-1 font-weight-bold button_player"> Offer Draw </button>
-            <span type="button" className="btn btn-light mr-1 font-weight-bold disabled button_player" disabled>Turn - white</span>
+            <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}
+                size='small'
+                trigger={<Button className={`red button_player ${playerClassName}`}> Surrender </Button>}
+            >
+                <Header icon>
+                    Surrender
+                </Header>
+                <Modal.Content>
+                    <p>
+                        Are u sure you want to surrender?
+                    </p>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button color='red' inverted onClick={() => setOpen(false)}>
+                        <Icon name='remove' /> No
+                    </Button>
+                    <Button color='green' inverted onClick={() => setOpen(false)}>
+                        <Icon name="checkmark" /> Yes
+                    </Button>
+                </Modal.Actions>
+            </Modal>
+            <Button className={`secondary button_player ${playerClassName}`} onClick={offerDraw}> {draw} Draw </Button>
+            <Button className='button_player' color={turnClassName} disabled> Turn - {turn}</Button>
         </div>
     )
 }

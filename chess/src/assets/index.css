@@ -31,8 +31,8 @@ code {
   border: 1px solid transparent;
   margin: 0;
   padding: 0;
-  height: 72px;
-  width: 72px;
+  height: 64px;
+  width: 64px;
   font-weight: bold;
   font-size: 12px;
   background-repeat: no-repeat;
@@ -49,6 +49,18 @@ code {
 }
 
 /* Player Info */
+
 .button_player {
   width: 124px !important;
+  margin-right: .25rem !important;
+  font-weight: bold;
+  font-size: 14px !important;
 }
+
+.modal {
+  height: auto !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+

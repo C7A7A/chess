@@ -5,7 +5,6 @@ function check_are_moves_valid(pieces, possibleMoves, player, piecePosition) {
     const king = pieces.find(
         piece => (piece.player === player) && piece.king 
     )
-    var kingPosition = king.key
 
     // find position of piece which player wants to move
     const piece = pieces.find(
@@ -22,7 +21,9 @@ function check_are_moves_valid(pieces, possibleMoves, player, piecePosition) {
             key: piecePosition
         }
 
-        // if selected piece is king simulate his position
+        var kingPosition = king.key
+
+        // if selected piece is king simulate king position
         if (piecePosition !== kingPosition) {
             kingPosition = king.key
         } else {

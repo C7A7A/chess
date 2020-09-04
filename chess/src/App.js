@@ -10,10 +10,13 @@ import check_are_moves_valid from './helpers/check_are_moves_valid.js'
 function App() {
 
   const [pieces, setPieces] = useState(init_pieces())
+
   const [selectedPiece, setSelectedPiece] = useState({})
   const [selectedSquare, setSelectedSquare] = useState(-1)
   const [player, setPlayer] = useState(2)
   const [possibleMoves, setPossibleMoves] = useState([])
+
+  const [turn, setTurn] = useState('white')
   
   // console.log(pieces)
 
@@ -43,6 +46,7 @@ function App() {
           // console.log(possibleMoves, pieces[pos])
           updatePieces(pieces[pos].key)
           updatePlayer()
+          updateTurn()
         }
 
         pieces[selectedSquare].style = { ...pieces[selectedSquare].style, backgroundColor: ""} // clear bg color of last selected piece
@@ -76,6 +80,11 @@ function App() {
     }
   }
 
+  const updateTurn = () => {
+    let changeTurn = (turn === 'white') ? 'black' : 'white'
+    setTurn(changeTurn)
+  }
+
   return (
     <div className="App container-fluid h-100">
       <div className="row h-100">
@@ -84,13 +93,19 @@ function App() {
           INFO
         </div>
 
-        <div className="col-6">
-          <PlayerInfo player={1} />
+        <div className="col-6 my-auto">
+          <PlayerInfo 
+            player={1} 
+            turn={turn} 
+          />
           <Board 
             pieces={pieces} 
             handleClick={handleCLickMove}
           />
-          <PlayerInfo player={2} />
+          <PlayerInfo 
+            player={2} 
+            turn={turn} 
+          />
         </div>
 
         <div className="col-3">
