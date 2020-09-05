@@ -1,17 +1,14 @@
 MAIN GAME:
-- game goal
+- game over info
 - castling
 - En Passant
 - pawn promotion
-- alerts for players (check, mate, turn, etc)
-- button -> surrender
-- button -> offer draw
-- stalemate
 - threefold repetition
 
 INFO:
 - "death" pieces
 - panel with moves
+- 1-8, a-h squares
 
 OPTIONS:
 - timer
@@ -22,4 +19,4 @@ OPTIONS:
 FIX BUGS:
 
 DONE?
-- function that check for check
+- stalemate

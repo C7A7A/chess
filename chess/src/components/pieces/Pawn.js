@@ -37,12 +37,16 @@ class Pawn extends Piece {
             }
 
             // bottom-right diagonally
-            if (pieces[position + 9].player === 2 && ( (position + 1) % 8) !== 0) {
-                possibleMoves.push(position + 9)
+            if (pieces[position + 9]) {
+                if (pieces[position + 9].player === 2 && ( (position + 1) % 8) !== 0) {
+                    possibleMoves.push(position + 9)
+                }
             }
             // bottom-left diagonally
-            if (pieces[position + 7].player === 2 && (position % 8) !== 0) {
-                possibleMoves.push(position + 7)
+            if (pieces[position + 7]) {
+                if (pieces[position + 7].player === 2 && (position % 8) !== 0) {
+                    possibleMoves.push(position + 7)
+                }
             }
         } else {
 
@@ -58,12 +62,16 @@ class Pawn extends Piece {
             }
 
             // top-left diagonally
-            if (pieces[position - 9].player === 1 && (position % 8) !== 0) {
-                possibleMoves.push(position - 9)
+            if (pieces[position - 9]) {
+                if (pieces[position - 9].player === 1 && (position % 8) !== 0) {
+                    possibleMoves.push(position - 9)
+                }
             }
             // top-right diagonally
-            if (pieces[position - 7].player === 1 && ( (position + 1) % 8) !== 0) {
-                possibleMoves.push(position - 7)
+            if (pieces[position - 7]) {
+                if (pieces[position - 7].player === 1 && ( (position + 1) % 8) !== 0) {
+                    possibleMoves.push(position - 7)
+                }
             }
         }
         

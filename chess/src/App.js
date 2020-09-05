@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 
 import Board from './components/Board.js'
@@ -43,8 +43,8 @@ function App() {
         // check if piece can move to square
         if (possibleMoves.includes(pieces[pos].key)) {
           // console.log(possibleMoves, pieces[pos])
-          updatePieces(pieces[pos].key)
           updatePlayer()
+          updatePieces(pieces[pos].key)
           updateTurn()
         }
 
@@ -82,6 +82,25 @@ function App() {
   const updateTurn = () => {
     let changeTurn = (turn === 'white') ? 'black' : 'white'
     setTurn(changeTurn)
+  }
+
+  useEffect( () => {
+    checkStalemate(pieces, player)
+  }, [pieces, player])
+
+  const checkStalemate = (pieces, player) => {
+    let playerPieces = pieces.filter((piece) => {
+      return piece.player && piece.player === player
+    })
+
+    let piecesWithAnyMove = playerPieces.filter((piece) => {
+      let moves = piece.possibleMoves(pieces, piece.key)
+      return (check_are_moves_valid(pieces, moves, player, piece.key)).length > 0
+    })
+
+    if (piecesWithAnyMove.length === 0) {
+      console.log("stalemate")
+    }    
   }
 
   return (
