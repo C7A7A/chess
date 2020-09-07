@@ -17,7 +17,7 @@ function PlayerInfo({ player, turn }) {
         setOpen(false)
         // console.log(playerButtonRef.current.props.className)
         let info = (playerButtonRef.current.props.className.includes('black_pieces')) ? "White wins!" : "Black wins!"
-        openModalRef.current.showModal(info)
+        openModalRef.current.showModal(info, 'surrender')
     }
 
     const keepPlaying = () => {

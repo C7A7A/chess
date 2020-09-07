@@ -1,5 +1,4 @@
 MAIN GAME:
-- game over info
 - checkmate
 - castling
 - En Passant
@@ -10,6 +9,7 @@ INFO:
 - "death" pieces
 - panel with moves
 - 1-8, a-h squares
+- last play
 
 OPTIONS:
 - timer

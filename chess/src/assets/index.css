@@ -77,9 +77,7 @@ code {
   color: white !important;
 }
 
-/* Game Over Modal */
-
-.modal_text {
+.text-align-center {
   text-align: center !important;
 }
 

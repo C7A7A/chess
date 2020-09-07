@@ -91,17 +91,39 @@ function App() {
   }, [pieces, player])
 
   const checkStalemate = (pieces, player) => {
+    // get player pieces
     let playerPieces = pieces.filter((piece) => {
       return piece.player && piece.player === player
     })
-
+    // check if any piece can move
     let piecesWithAnyMove = playerPieces.filter((piece) => {
       let moves = piece.possibleMoves(pieces, piece.key)
       return (check_are_moves_valid(pieces, moves, player, piece.key)).length > 0
     })
 
     if (piecesWithAnyMove.length === 0) {
-      openModalRef.current.showModal('Draw')
+      // get enemy plahyer pieces
+      let enemyPlayerPieces = pieces.filter((piece) => {
+        return piece.player && piece.player !== player
+      })
+      // find king which is under stalemate/mate
+      let king = pieces.find((piece) => {
+        return piece.king && piece.player && piece.player === player
+      })
+      let enemyPlayer = (player === 1) ? 2 : 1
+      // check if its mate
+      let checkMate = enemyPlayerPieces.some((piece) => {
+        let moves = piece.possibleMoves(pieces, piece.key)
+        moves = check_are_moves_valid(pieces, moves, enemyPlayer, piece.key)
+        return moves.includes(king.key)
+      })
+
+      if (!checkMate) {
+        openModalRef.current.showModal('Draw', 'stalemate')
+      } else {
+        let info = (turn === 'white') ? 'Black wins!' : 'White wins!' 
+        openModalRef.current.showModal(info, 'checkmate')
+      }
     }    
   }
 

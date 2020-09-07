@@ -2,14 +2,14 @@ function check_are_moves_valid(pieces, possibleMoves, player, piecePosition) {
     const incorrectMoves = []
 
     // find position of king
-    const king = pieces.find(
-        piece => (piece.player === player) && piece.king 
-    )
+    const king = pieces.find( (piece) => {
+        return piece.player === player && piece.king
+    })
 
     // find position of piece which player wants to move
-    const piece = pieces.find(
-        piece => (piece.key === piecePosition)
-    )
+    const piece = pieces.find( (piece) => {
+        return (piece.key === piecePosition)
+    })
 
     // simulate every possible move of selected piece
     for (let j = 0; j < possibleMoves.length; j++) {

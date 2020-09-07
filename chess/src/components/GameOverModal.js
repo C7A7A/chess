@@ -3,12 +3,18 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 const GameOverModal = forwardRef((props, ref ) => {
     const [open, setOpen] = useState(false)
-    const [info, setInfo] = useState('')
+    const [winnerInfo, setWinnerInfo] = useState('')
+    const [gameOverType, setGameOverType] = useState('')
      
 
-    const showModal = (info) => {
-        setInfo(info)
+    const showModal = (winner, type) => {
+        setWinnerInfo(winner)
+        setGameOverType(type)
         setOpen(true)
+    }
+
+    const rematch = () => {
+        setOpen(false)
     }
 
     useImperativeHandle(ref, () => {
@@ -25,16 +31,16 @@ const GameOverModal = forwardRef((props, ref ) => {
         >
             <Header icon>
                 <Icon name='winner' />
-                <h1> {info} </h1> 
+                <h1> {winnerInfo} ({gameOverType}) </h1> 
             </Header>
             <Modal.Content>
-                <h3 className="modal_text"> Do you want to rematch? </h3>
+                <h3 className="text-align-center"> Do you want to rematch? </h3>
             </Modal.Content>
-            <Modal.Actions>
-                <Button color='red' size='large' inverted onClick={() => setOpen(false)}>
+            <Modal.Actions className="text-align-center">
+                <Button color='red' size='big' inverted onClick={() => setOpen(false)}>
                     <Icon name='remove' /> No
                 </Button>
-                <Button color='green' size='large' inverted onClick={() => setOpen(false)}>
+                <Button color='green' size='big' inverted onClick={rematch}>
                     <Icon name='checkmark' /> Yes
                 </Button> 
             </Modal.Actions>
