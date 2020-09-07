@@ -31,8 +31,8 @@ code {
   border: 1px solid transparent;
   margin: 0;
   padding: 0;
-  height: 6vh;
-  width: 6vh;
+  height: 9vh;
+  width: 9vh;
   font-weight: bold;
   font-size: 12px;
   background-repeat: no-repeat;
@@ -75,6 +75,12 @@ code {
 .black_turn {
   background-color: rgb(20, 19, 19) !important;
   color: white !important;
+}
+
+/* Game Over Modal */
+
+.modal_text {
+  text-align: center !important;
 }
 
 

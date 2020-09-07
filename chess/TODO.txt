@@ -1,5 +1,6 @@
 MAIN GAME:
 - game over info
+- checkmate
 - castling
 - En Passant
 - pawn promotion

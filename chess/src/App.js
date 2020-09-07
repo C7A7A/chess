@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 import Board from './components/Board.js'
 import PlayerInfo from './components/PlayerInfo.js'
+import GameOverModal from './components/GameOverModal.js'
 import init_pieces from './helpers/init_pieces.js'
 import check_are_moves_valid from './helpers/check_are_moves_valid.js'
 
@@ -17,6 +18,7 @@ function App() {
 
   const [turn, setTurn] = useState('white')
   
+  const openModalRef = useRef(null)
   // console.log(pieces)
 
   const handleCLickMove = (pos) => {
@@ -99,7 +101,7 @@ function App() {
     })
 
     if (piecesWithAnyMove.length === 0) {
-      console.log("stalemate")
+      openModalRef.current.showModal('Draw')
     }    
   }
 
@@ -112,18 +114,13 @@ function App() {
         </div>
 
         <div className="col-6 my-auto">
-          <PlayerInfo 
-            player={1} 
-            turn={turn} 
-          />
+          <GameOverModal ref={openModalRef}/>
+          <PlayerInfo turn={turn} player={1}/>
           <Board 
             pieces={pieces} 
             handleClick={handleCLickMove}
           />
-          <PlayerInfo 
-            player={2} 
-            turn={turn} 
-          />
+          <PlayerInfo turn={turn} player={2}/>
         </div>
 
         <div className="col-3">

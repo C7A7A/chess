@@ -1,35 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
-function GameOverModal({ color }) {
+const GameOverModal = forwardRef((props, ref ) => {
     const [open, setOpen] = useState(false)
+    const [info, setInfo] = useState('')
+     
 
-    let info = (color) ? `${color} wins!` : 'Draw' 
+    const showModal = (info) => {
+        setInfo(info)
+        setOpen(true)
+    }
+
+    useImperativeHandle(ref, () => {
+        return {
+            showModal: showModal,
+        }   
+    })
 
     return (
         <Modal
-            onClose={() => setOpen(false)}
-            onOpen={() => setOpen(true)}
+            basic
             open={open}
-            size='small'
+            size='fullscreen'
         >
-            <Header>
-                {info} 
+            <Header icon>
+                <Icon name='winner' />
+                <h1> {info} </h1> 
             </Header>
             <Modal.Content>
-                <h5> {info} </h5>
-                <p> Do you want to rematch? </p>
+                <h3 className="modal_text"> Do you want to rematch? </h3>
             </Modal.Content>
             <Modal.Actions>
-                <Button color='red' inverted onclick={() => setOpen(false)}>
+                <Button color='red' size='large' inverted onClick={() => setOpen(false)}>
                     <Icon name='remove' /> No
                 </Button>
-                <Button color='green' inverted onClick={() => setOpen(false)}>
+                <Button color='green' size='large' inverted onClick={() => setOpen(false)}>
                     <Icon name='checkmark' /> Yes
                 </Button> 
             </Modal.Actions>
         </Modal>
     )
-}
+})
 
 export default GameOverModal
