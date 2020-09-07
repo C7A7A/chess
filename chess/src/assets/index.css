@@ -25,6 +25,10 @@ code {
 
 
 /* Square */
+.square_container {
+  position: relative;
+  display: inline-block;
+}
 
 .square {
   background: transparent;
@@ -46,6 +50,20 @@ code {
 
 .square_green {
   background-color: #145d4a;
+}
+
+.pos-abs {
+  position: absolute;
+}
+
+.square_number {
+  top: 5px;
+  left: 5px;
+}
+
+.square_letter {
+  bottom: 5px;
+  right: 5px;
 }
 
 /* Player Info */

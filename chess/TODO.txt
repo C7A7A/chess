@@ -1,5 +1,4 @@
 MAIN GAME:
-- checkmate
 - castling
 - En Passant
 - pawn promotion
@@ -20,4 +19,3 @@ OPTIONS:
 FIX BUGS:
 
 DONE?
-- stalemate

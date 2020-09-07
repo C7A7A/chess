@@ -15,7 +15,6 @@ function App() {
   const [selectedSquare, setSelectedSquare] = useState(-1)
   const [player, setPlayer] = useState(2)
   const [possibleMoves, setPossibleMoves] = useState([])
-
   const [turn, setTurn] = useState('white')
   
   const openModalRef = useRef(null)
@@ -121,7 +120,7 @@ function App() {
       if (!checkMate) {
         openModalRef.current.showModal('Draw', 'stalemate')
       } else {
-        let info = (turn === 'white') ? 'Black wins!' : 'White wins!' 
+        let info = (player === 2) ? 'Black wins!' : 'White wins!' 
         openModalRef.current.showModal(info, 'checkmate')
       }
     }    
