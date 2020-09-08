@@ -4,6 +4,7 @@ import './App.css'
 import Board from './components/Board.js'
 import PlayerInfo from './components/PlayerInfo.js'
 import GameOverModal from './components/GameOverModal.js'
+import PromotePawnModal from './components/PromotePawnModal.js'
 import init_pieces from './helpers/init_pieces.js'
 import check_are_moves_valid from './helpers/check_are_moves_valid.js'
 
@@ -17,8 +18,10 @@ function App() {
   const [possibleMoves, setPossibleMoves] = useState([])
   const [turn, setTurn] = useState('white')
   
-  const openModalRef = useRef(null)
+  const openGameOverModalRef = useRef(null)
+  const openPromotePawnModalRef = useRef(null)
   // console.log(pieces)
+  // console.log('App')
 
   const handleCLickMove = (pos) => {
     // check if selected square is empty and if any piece was previosuly selected
@@ -86,8 +89,26 @@ function App() {
   }
 
   useEffect( () => {
+    checkPromotePawn(pieces, player)
     checkStalemate(pieces, player)
   }, [pieces, player])
+
+  const checkPromotePawn = (pieces, player) => {
+    let playerPawns = pieces.filter((piece) => {
+      return piece.pawn && piece.player !== player
+    })
+
+    if (playerPawns.length > 0) {
+      let pawnCanPromote = playerPawns.filter((piece) => {
+        return piece.key <= 7 || piece.key >= 56
+      })
+
+      if (pawnCanPromote.length > 0) {
+        let player_turn = (player === 1) ? 2 : 1 
+        openPromotePawnModalRef.current.showModal(player_turn)
+      }
+    }
+  }
 
   const checkStalemate = (pieces, player) => {
     // get player pieces
@@ -118,10 +139,10 @@ function App() {
       })
 
       if (!checkMate) {
-        openModalRef.current.showModal('Draw', 'stalemate')
+        openGameOverModalRef.current.showModal('Draw', 'stalemate')
       } else {
         let info = (player === 2) ? 'Black wins!' : 'White wins!' 
-        openModalRef.current.showModal(info, 'checkmate')
+        openGameOverModalRef.current.showModal(info, 'checkmate')
       }
     }    
   }
@@ -135,12 +156,11 @@ function App() {
         </div>
 
         <div className="col-6 my-auto">
-          <GameOverModal ref={openModalRef}/>
+          <GameOverModal ref={openGameOverModalRef} />
+          <PromotePawnModal ref={openPromotePawnModalRef}  />
+
           <PlayerInfo turn={turn} player={1}/>
-          <Board 
-            pieces={pieces} 
-            handleClick={handleCLickMove}
-          />
+          <Board pieces={pieces} handleClick={handleCLickMove} />
           <PlayerInfo turn={turn} player={2}/>
         </div>
 

@@ -13,7 +13,7 @@ function Square({number, color, piece, onClick}) {
         63: "H"
     }
     return (
-        <div class="square_container">
+        <div className="square_container">
             <button 
                 className={classes} 
                 key={number}

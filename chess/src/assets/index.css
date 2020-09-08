@@ -35,8 +35,8 @@ code {
   border: 1px solid transparent;
   margin: 0;
   padding: 0;
-  height: 9vh;
-  width: 9vh;
+  height: 8vh;
+  width: 8vh;
   font-weight: bold;
   font-size: 12px;
   background-repeat: no-repeat;
@@ -49,7 +49,7 @@ code {
 }
 
 .square_green {
-  background-color: #145d4a;
+  background-color: #1b8065;
 }
 
 .pos-abs {
@@ -95,8 +95,21 @@ code {
   color: white !important;
 }
 
+/* PromotePawnModal */
+
+.promote_pawn_img {
+  cursor: pointer;
+}
+
+.promote_pawn_img:hover {
+  background-color: rgb(218, 214, 214);
+}
+
 .text-align-center {
   text-align: center !important;
 }
 
-
+.img-resp {
+  width: 100% !important;
+  height: auto !important;
+}

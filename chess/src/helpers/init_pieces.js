@@ -36,9 +36,9 @@ function init_pieces() {
     pieces[4] = new King(1, 4)
     pieces[60] = new King(2, 60)
 
-    // for (let i = 8; i < 16; i++) {
-    //     pieces[i] = new Pawn(1, i)
-    // }
+    for (let i = 8; i < 16; i++) {
+        pieces[i] = new Pawn(1, i)
+    }
 
     // for (let i = 48; i < 56; i++) {
     //     pieces[i] = new Pawn(2, i)

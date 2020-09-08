@@ -7,6 +7,7 @@ import check_is_piece_blocking from '../../helpers/check_is_piece_blocking.js'
 class Pawn extends Piece {
     constructor(player, key) {
         super (player, (player === 1 ?  BlackPawn : WhitePawn), key)
+        this.pawn = true
         this.initialSquare = key
     }
 

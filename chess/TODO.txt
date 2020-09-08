@@ -3,11 +3,11 @@ MAIN GAME:
 - En Passant
 - pawn promotion
 - threefold repetition
+- reset board
 
 INFO:
 - "death" pieces
 - panel with moves
-- 1-8, a-h squares
 - last play
 
 OPTIONS:
