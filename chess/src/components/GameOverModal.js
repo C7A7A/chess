@@ -1,7 +1,9 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
-const GameOverModal = forwardRef((props, ref ) => {
+import init_pieces from '../helpers/init_pieces.js'
+
+const GameOverModal = forwardRef(({ handlePiecesChange }, ref) => {
     const [open, setOpen] = useState(false)
     const [winnerInfo, setWinnerInfo] = useState('')
     const [gameOverType, setGameOverType] = useState('')
@@ -14,6 +16,8 @@ const GameOverModal = forwardRef((props, ref ) => {
     }
 
     const rematch = () => {
+        let newPieces = init_pieces()
+        handlePiecesChange(newPieces)
         setOpen(false)
     }
 

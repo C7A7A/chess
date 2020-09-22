@@ -1,7 +1,6 @@
 MAIN GAME:
 - castling
 - En Passant
-- pawn promotion
 - threefold repetition
 - reset board
 
@@ -19,3 +18,4 @@ OPTIONS:
 FIX BUGS:
 
 DONE?
+- pawn promotion

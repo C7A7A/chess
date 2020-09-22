@@ -112,6 +112,7 @@ function App() {
 
   const handlePiecesChange = (newPieces) => {
     setPieces(newPieces)
+    setTurn('white')
   }
 
   const checkStalemate = (pieces, player) => {
@@ -160,16 +161,32 @@ function App() {
         </div>
 
         <div className="col-6 my-auto">
-          <GameOverModal ref={openGameOverModalRef} />
+          <GameOverModal 
+            ref={openGameOverModalRef} 
+            handlePiecesChange={handlePiecesChange}
+          />
           <PromotePawnModal 
             ref={openPromotePawnModalRef} 
             pieces={pieces} 
             handlePiecesChange={handlePiecesChange} 
           />
 
-          <PlayerInfo turn={turn} player={1}/>
-          <Board pieces={pieces} handleClick={handleCLickMove} />
-          <PlayerInfo turn={turn} player={2}/>
+          <PlayerInfo 
+            turn={turn} 
+            player={1}
+            handlePieces={handlePiecesChange} 
+          />
+
+          <Board 
+            pieces={pieces} 
+            handleClick={handleCLickMove} 
+          />
+
+          <PlayerInfo 
+            turn={turn} 
+            player={2}
+            handlePieces={handlePiecesChange} 
+          />
         </div>
 
         <div className="col-3">

@@ -3,7 +3,7 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 import GameOverModal from './GameOverModal.js'
 
-function PlayerInfo({ player, turn }) {
+function PlayerInfo({ player, turn, handlePieces }) {
     const [open, setOpen] = useState(false)
 
     const openModalRef = useRef(null)
@@ -26,7 +26,10 @@ function PlayerInfo({ player, turn }) {
 
     return (
         <div className="col-12 m-2">
-            <GameOverModal ref={openModalRef}/>
+            <GameOverModal 
+                ref={openModalRef}
+                handlePiecesChange={handlePieces}    
+            />
             <Modal
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
