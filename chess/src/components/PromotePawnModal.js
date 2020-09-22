@@ -11,22 +11,49 @@ import BlackRook from '../assets/svgImages/black_rook.svg'
 import BlackBishop from '../assets/svgImages/black_bishop.svg'
 import BlackKnight from '../assets/svgImages/black_king.svg'
 
-const PromotePawnModal = forwardRef((props, ref) => {
+import Rook from './pieces/Rook'
+import Queen from './pieces/Queen'
+import Knight from '../components/pieces/Knight.js'
+import Bishop from '../components/pieces/Bishop.js'
+
+const PromotePawnModal = forwardRef(({pieces, handlePiecesChange}, ref) => {
     const [open, setOpen] = useState(false)
-    const [pieces, setPieces] = useState([])
+    const [promotePieces, setPromotePieces] = useState([])
+    const [pawnToPromoteKey, setPawnToPromoteKey] = useState(-1)
     
     
-    const showModal = (player) => {
+    const showModal = (player, key) => {
         if (player === 1) {
-            setPieces([BlackQueen, BlackRook, BlackBishop, BlackKnight])
+            setPromotePieces([BlackQueen, BlackRook, BlackBishop, BlackKnight])
         } else {
-            setPieces([WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight])
+            setPromotePieces([WhiteQueen, WhiteRook, WhiteBishop, WhiteKnight])
         }
+        setPawnToPromoteKey(key)
         setOpen(true)
     } 
 
     const promotePawn = (pieceSrc) => {
-        console.log(pieceSrc)
+        let player
+        let newPieces = [...pieces]
+
+        if (pieceSrc.includes('black')) {
+            player = 1
+        } else {
+            player = 2
+        }
+
+        if (pieceSrc.includes('queen')) {
+            newPieces[pawnToPromoteKey] = new Queen(player, pawnToPromoteKey)    
+        } else if (pieceSrc.includes('rook')) {
+            newPieces[pawnToPromoteKey] = new Rook(player, pawnToPromoteKey)    
+        } else if (pieceSrc.includes('knight')) {
+            newPieces[pawnToPromoteKey] = new Knight(player, pawnToPromoteKey)    
+        } else if (pieceSrc.includes('bishop')) {
+            newPieces[pawnToPromoteKey] = new Bishop(player, pawnToPromoteKey)    
+        }
+
+        handlePiecesChange(newPieces)
+
         setOpen(false)
     }
 
@@ -39,25 +66,25 @@ const PromotePawnModal = forwardRef((props, ref) => {
     return (
         <Modal 
             open={open}
-            size='mini'
+            size='tiny'
         >
-            <Header icon='level up' content='Promote pawn' />
+            <Header icon>
+            <h3> Promote Pawn </h3>
+            </Header>
             <Modal.Content>
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
-                            <img onClick={() => promotePawn(pieces[0])} src={pieces[0]} className='img-resp mx-auto d-block promote_pawn_img' alt="Queen" />
+                            <img onClick={() => promotePawn(promotePieces[0])} src={promotePieces[0]} className='img-resp mx-auto d-block promote_pawn_img' alt="Queen" />
                         </div>
                         <div className='col'>
-                            <img onClick={() => promotePawn(pieces[1])} src={pieces[1]} className='img-resp mx-auto d-block promote_pawn_img' alt="Rook" />
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col'>
-                            <img onClick={() => promotePawn(pieces[2])} src={pieces[2]} className='img-resp mx-auto d-block promote_pawn_img' alt="Bishop" />
+                            <img onClick={() => promotePawn(promotePieces[1])} src={promotePieces[1]} className='img-resp mx-auto d-block promote_pawn_img' alt="Rook" />
                         </div>
                         <div className='col'>
-                            <img onClick={() => promotePawn(pieces[3])} src={pieces[3]} className='img-resp mx-auto d-block promote_pawn_img' alt="Knight" />
+                            <img onClick={() => promotePawn(promotePieces[2])} src={promotePieces[2]} className='img-resp mx-auto d-block promote_pawn_img' alt="Bishop" />
+                        </div>
+                        <div className='col'>
+                            <img onClick={() => promotePawn(promotePieces[3])} src={promotePieces[3]} className='img-resp mx-auto d-block promote_pawn_img' alt="Knight" />
                         </div>
                     </div>
                 </div>

@@ -39,7 +39,7 @@ function App() {
           setPossibleMoves(moves)
         } else {
 
-          console.log('It`s your opponent`s turn')
+          // console.log('It`s your opponent`s turn')
         }
     } else {
       // check if any square is selected
@@ -105,9 +105,13 @@ function App() {
 
       if (pawnCanPromote.length > 0) {
         let player_turn = (player === 1) ? 2 : 1 
-        openPromotePawnModalRef.current.showModal(player_turn)
+        openPromotePawnModalRef.current.showModal(player_turn, pawnCanPromote[0].key)
       }
     }
+  }
+
+  const handlePiecesChange = (newPieces) => {
+    setPieces(newPieces)
   }
 
   const checkStalemate = (pieces, player) => {
@@ -157,7 +161,11 @@ function App() {
 
         <div className="col-6 my-auto">
           <GameOverModal ref={openGameOverModalRef} />
-          <PromotePawnModal ref={openPromotePawnModalRef}  />
+          <PromotePawnModal 
+            ref={openPromotePawnModalRef} 
+            pieces={pieces} 
+            handlePiecesChange={handlePiecesChange} 
+          />
 
           <PlayerInfo turn={turn} player={1}/>
           <Board pieces={pieces} handleClick={handleCLickMove} />
