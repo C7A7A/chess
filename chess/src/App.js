@@ -5,13 +5,14 @@ import Board from './components/Board.js'
 import PlayerInfo from './components/PlayerInfo.js'
 import GameOverModal from './components/GameOverModal.js'
 import PromotePawnModal from './components/PromotePawnModal.js'
+
 import init_pieces from './helpers/init_pieces.js'
 import check_are_moves_valid from './helpers/check_are_moves_valid.js'
+import check_castling from './helpers/check_castling.js'
 
 function App() {
 
   const [pieces, setPieces] = useState(init_pieces())
-
   const [selectedPiece, setSelectedPiece] = useState({})
   const [selectedSquare, setSelectedSquare] = useState(-1)
   const [player, setPlayer] = useState(2)
@@ -34,6 +35,7 @@ function App() {
       
           let moves = pieces[pos].possibleMoves(pieces, pos)
           moves = check_are_moves_valid(pieces, moves, player, pos)
+          moves = check_castling(pieces, moves, player, pos)
           // console.log(possibleMoves)
           moves.map(move => pieces[move].style = { ...pieces[move].style, backgroundColor: "#eb9626"})
           setPossibleMoves(moves)
@@ -65,6 +67,9 @@ function App() {
 
     newPieces[key] = selectedPiece // move selected piece to selected square
     newPieces[key].key = key // change initial key to new key
+    if (newPieces[key].initialSquare) {
+      newPieces[key].initialSquare = false
+    }
 
     // change old square of selected piece to "inactive"
     newPieces[selectedSquare] = {
@@ -127,7 +132,7 @@ function App() {
     })
 
     if (piecesWithAnyMove.length === 0) {
-      // get enemy plahyer pieces
+      // get enemy player pieces
       let enemyPlayerPieces = pieces.filter((piece) => {
         return piece.player && piece.player !== player
       })

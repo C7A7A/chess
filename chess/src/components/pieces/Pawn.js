@@ -8,18 +8,12 @@ class Pawn extends Piece {
     constructor(player, key) {
         super (player, (player === 1 ?  BlackPawn : WhitePawn), key)
         this.pawn = true
-        this.initialSquare = key
+        this.initialSquare = true
     }
 
     possibleMoves(pieces, position) {
         var possibleMoves = []
-        var isInitPosition = true
         var isPieceBlocking = ''
-
-        // check if pawn is on his initial position
-        if (this.initialSquare !== position) { 
-            isInitPosition = false
-        }
 
         if (this.player === 1) {
 
@@ -29,7 +23,7 @@ class Pawn extends Piece {
                 possibleMoves.push(position + 8)
             }
             // check if pawn is on his initial position and if there is any piece in front of pawn 
-            if (isInitPosition && isPieceBlocking === 'false') {
+            if (this.initialSquare && isPieceBlocking === 'false') {
                 // check if there is any piece 2 squares in front of pawn
                 let isPieceBlocking2 = check_is_piece_blocking(pieces, position + 16, this.player)
                 if (isPieceBlocking2 === 'false') {
@@ -55,7 +49,7 @@ class Pawn extends Piece {
             if (isPieceBlocking === 'false') {
                 possibleMoves.push(position - 8)
             }
-            if (isInitPosition && isPieceBlocking === 'false') {
+            if (this.initialSquare && isPieceBlocking === 'false') {
                 let isPieceBlocking2 = check_is_piece_blocking(pieces, position - 16, this.player)
                 if (isPieceBlocking2 === 'false') {
                     possibleMoves.push(position - 16)

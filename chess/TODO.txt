@@ -1,8 +1,5 @@
 MAIN GAME:
 - castling
-- En Passant
-- threefold repetition
-- reset board
 
 INFO:
 - "death" pieces
@@ -19,3 +16,4 @@ FIX BUGS:
 
 DONE?
 - pawn promotion
+- reset board

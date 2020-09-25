@@ -17,12 +17,12 @@ function init_pieces() {
 
     pieces[0] = new Rook(1, 0)
     pieces[7] = new Rook(1, 7)
-    // pieces[56] = new Rook(2, 56)
-    // pieces[63] = new Rook(2, 63)
+    pieces[56] = new Rook(2, 56)
+    pieces[63] = new Rook(2, 63)
 
     pieces[1] = new Knight(1, 1)
     pieces[6] = new Knight(1, 6)
-    // pieces[57] = new Knight(2, 57)
+    pieces[57] = new Knight(2, 57)
     // pieces[62] = new Knight(2, 62)
 
     pieces[2] = new Bishop(1, 2)
