@@ -46,6 +46,15 @@ function check_are_moves_valid(pieces, possibleMoves, player, piecePosition) {
         }
     }
 
+    // check if king is checked 
+    if (piecePosition === king.key) {
+        const enemyPieces = pieces.filter(piece => piece.player && piece.player !== player)
+        // checked king can`t castle
+        if (enemyPieces.some(piece => piece.possibleMoves(pieces, piece.key).includes(king.key))) {
+            incorrectMoves.push(piecePosition - 2, piecePosition + 2)
+        }
+    }
+
     possibleMoves = possibleMoves.filter( (move) => !incorrectMoves.includes(move))
 
     return possibleMoves

@@ -34,8 +34,8 @@ function App() {
           setSelectedPiece(pieces[pos])
       
           let moves = pieces[pos].possibleMoves(pieces, pos)
-          moves = check_are_moves_valid(pieces, moves, player, pos)
           moves = check_castling(pieces, moves, player, pos)
+          moves = check_are_moves_valid(pieces, moves, player, pos)
           // console.log(possibleMoves)
           moves.map(move => pieces[move].style = { ...pieces[move].style, backgroundColor: "#eb9626"})
           setPossibleMoves(moves)
