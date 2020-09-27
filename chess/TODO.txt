@@ -1,5 +1,4 @@
 MAIN GAME:
-- castling (rook move)
 
 INFO:
 - "death" pieces
@@ -17,3 +16,4 @@ FIX BUGS:
 DONE?
 - pawn promotion
 - reset board
+- castling

@@ -68,33 +68,42 @@ function App() {
     newPieces[key] = selectedPiece // move selected piece to selected square
     newPieces[key].key = key // change initial key to new key
 
-    if (newPieces[key].initialSquare) {
-      newPieces[key].initialSquare = false
-    }
-
     // change old square of selected piece to "inactive"
     newPieces[selectedSquare] = {
       style: { backgroundColor: ""},
       key: selectedSquare
     }
 
-    // if (checkCastling(key)) {
-    //   // castling right
-    //   if (key - selectedSquare === 2) {
-    //     newPieces[key - 1] = newPieces[selectedSquare + 3] 
+    if (checkCastling(key)) {
+      // castling right
+      if (key - selectedSquare === 2) {
+        let oldKey = newPieces[key - 1].key
+        newPieces[key - 1] = newPieces[selectedSquare + 3] 
 
-    //     newPieces[selectedSquare + 3] = {
-    //       style: { backgroundColor: "" },
-    //     }
-    //   } 
-    //   // castling left
-    //   else if (key - selectedSquare === -2) {
-    //     newPieces[key + 1] = newPieces[selectedSquare - 4]
-    //     newPieces[selectedSquare - 4] = {
-    //       style: { backgroundColor: "" }
-    //     }
-    //   }
-    // }
+        newPieces[selectedSquare + 3] = {
+          style: { backgroundColor: "" },
+          key: newPieces[key - 1].key
+        }
+
+        newPieces[key - 1].key = oldKey
+      } 
+      // castling left
+      else if (key - selectedSquare === -2) {
+        let oldKey = newPieces[key + 1].key
+        newPieces[key + 1] = newPieces[selectedSquare - 4]
+
+        newPieces[selectedSquare - 4] = {
+          style: { backgroundColor: "" },
+          key: newPieces[key + 1].key
+        }
+
+        newPieces[key + 1].key = oldKey
+      }
+    }
+
+    if (newPieces[key].initialSquare) {
+      newPieces[key].initialSquare = false
+    }
 
     setPieces(newPieces)
   }
@@ -113,7 +122,7 @@ function App() {
   }
 
   const checkCastling = (squareDestination) => {
-    if (selectedPiece.king) {
+    if (selectedPiece.king && selectedPiece.initialSquare) {
       if (Math.abs(squareDestination - selectedSquare) === 2) {
         return true
       }
