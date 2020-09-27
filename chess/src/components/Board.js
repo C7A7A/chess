@@ -4,9 +4,6 @@ import Square from './Square.js'
 function Board({pieces, handleClick}) {
     const board = []
 
-    // console.log(pieces)
-    // console.log(handleClick)
-
     for (let i = 0; i < 8; i++) {
         const boardSquares = []
         for (let j = 0; j < 8; j++) {
@@ -23,18 +20,6 @@ function Board({pieces, handleClick}) {
         
         board.push(<div key={i} className="boardRow row justify-content-center "> {boardSquares} </div>)
     }
-
-    // console.log(board[0].boardSquares[0].props.children[1].props.num)
-    // console.log(board)
-
-    // var testBoardMap = board.map(
-    //     item => {
-    //         var square = item.boardSquares.map(square => square)
-    //         return square
-    //     }
-    // )
-
-    // console.log(testBoardMap)
 
     return (
         <div className="board ">

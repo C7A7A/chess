@@ -1,6 +1,6 @@
 import get_path from './get_path.js'
 
-function check_castling(pieces, possibleMoves, player, piecePosition) {
+function get_castling(pieces, possibleMoves, player, piecePosition) {
     const incorrectMoves = []
     const piece = pieces.find(piece => piece.key === piecePosition)
 
@@ -34,4 +34,4 @@ function check_castling(pieces, possibleMoves, player, piecePosition) {
     return possibleMoves
 }
 
-export default check_castling
+export default get_castling

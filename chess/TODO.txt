@@ -1,5 +1,5 @@
 MAIN GAME:
-- castling
+- castling (rook move)
 
 INFO:
 - "death" pieces

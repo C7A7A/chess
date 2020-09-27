@@ -8,7 +8,7 @@ import PromotePawnModal from './components/PromotePawnModal.js'
 
 import init_pieces from './helpers/init_pieces.js'
 import check_are_moves_valid from './helpers/check_are_moves_valid.js'
-import check_castling from './helpers/check_castling.js'
+import get_castling from './helpers/get_castling.js'
 
 function App() {
 
@@ -34,7 +34,7 @@ function App() {
           setSelectedPiece(pieces[pos])
       
           let moves = pieces[pos].possibleMoves(pieces, pos)
-          moves = check_castling(pieces, moves, player, pos)
+          moves = get_castling(pieces, moves, player, pos)
           moves = check_are_moves_valid(pieces, moves, player, pos)
           // console.log(possibleMoves)
           moves.map(move => pieces[move].style = { ...pieces[move].style, backgroundColor: "#eb9626"})
@@ -67,6 +67,7 @@ function App() {
 
     newPieces[key] = selectedPiece // move selected piece to selected square
     newPieces[key].key = key // change initial key to new key
+
     if (newPieces[key].initialSquare) {
       newPieces[key].initialSquare = false
     }
@@ -76,6 +77,24 @@ function App() {
       style: { backgroundColor: ""},
       key: selectedSquare
     }
+
+    // if (checkCastling(key)) {
+    //   // castling right
+    //   if (key - selectedSquare === 2) {
+    //     newPieces[key - 1] = newPieces[selectedSquare + 3] 
+
+    //     newPieces[selectedSquare + 3] = {
+    //       style: { backgroundColor: "" },
+    //     }
+    //   } 
+    //   // castling left
+    //   else if (key - selectedSquare === -2) {
+    //     newPieces[key + 1] = newPieces[selectedSquare - 4]
+    //     newPieces[selectedSquare - 4] = {
+    //       style: { backgroundColor: "" }
+    //     }
+    //   }
+    // }
 
     setPieces(newPieces)
   }
@@ -91,6 +110,15 @@ function App() {
   const updateTurn = () => {
     let changeTurn = (turn === 'white') ? 'black' : 'white'
     setTurn(changeTurn)
+  }
+
+  const checkCastling = (squareDestination) => {
+    if (selectedPiece.king) {
+      if (Math.abs(squareDestination - selectedSquare) === 2) {
+        return true
+      }
+    }
+    return false
   }
 
   useEffect( () => {
