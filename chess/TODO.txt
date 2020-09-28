@@ -4,6 +4,7 @@ INFO:
 - "death" pieces
 - panel with moves
 - last play
+- possible moves (display dot, red bg color if killable)
 
 OPTIONS:
 - timer

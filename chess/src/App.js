@@ -155,6 +155,7 @@ function App() {
   const handlePiecesChange = (newPieces) => {
     setPieces(newPieces)
     setTurn('white')
+    setPlayer(2)
   }
 
   const checkStalemate = (pieces, player) => {

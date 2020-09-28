@@ -3,14 +3,14 @@ import React from 'react'
 function Square({number, color, piece, onClick}) {
     const classes=`square ${color}`
     const squareLetters = {
-        56: "A",
-        57: "B",
-        58: "C",
-        59: "D",
-        60: "E",
-        61: "F",
-        62: "G",
-        63: "H"
+        56: "a",
+        57: "b",
+        58: "c",
+        59: "d",
+        60: "e",
+        61: "f",
+        62: "g",
+        63: "h"
     }
     return (
         <div className="square_container">

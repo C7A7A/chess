@@ -6,7 +6,7 @@ import GameOverModal from './GameOverModal.js'
 function PlayerInfo({ player, turn, handlePieces }) {
     const [open, setOpen] = useState(false)
 
-    const openModalRef = useRef(null)
+    const gameOverModalRef = useRef(null)
     const playerButtonRef = useRef(null)
     // const [draw, setDraw] = useState(false)
 
@@ -17,7 +17,7 @@ function PlayerInfo({ player, turn, handlePieces }) {
         setOpen(false)
         // console.log(playerButtonRef.current.props.className)
         let info = (playerButtonRef.current.props.className.includes('black_pieces')) ? "White wins!" : "Black wins!"
-        openModalRef.current.showModal(info, 'surrender')
+        gameOverModalRef.current.showModal(info, 'surrender')
     }
 
     const keepPlaying = () => {
@@ -27,7 +27,7 @@ function PlayerInfo({ player, turn, handlePieces }) {
     return (
         <div className="col-12 m-2">
             <GameOverModal 
-                ref={openModalRef}
+                ref={gameOverModalRef}
                 handlePiecesChange={handlePieces}    
             />
             <Modal
