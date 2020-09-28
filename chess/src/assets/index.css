@@ -81,10 +81,6 @@ code {
   left: auto !important;
 }
 
-.button_turn {
-  cursor: default !important;
-}
-
 .white_turn {
   background-color: rgb(240, 239, 239) !important;
   color: black !important;
@@ -105,6 +101,8 @@ code {
   background-color: rgb(218, 214, 214);
 }
 
+/* Other Classes */
+
 .text-align-center {
   text-align: center !important;
 }
@@ -112,4 +110,8 @@ code {
 .img-resp {
   width: 100% !important;
   height: auto !important;
+}
+
+.cursor-default {
+  cursor: default !important;
 }

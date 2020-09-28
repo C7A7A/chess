@@ -1,17 +1,22 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 import GameOverModal from './GameOverModal.js'
 
-function PlayerInfo({ player, turn, handlePieces }) {
+function PlayerInfo({ player, turn, handlePieces, time = 600 }) {
     const [open, setOpen] = useState(false)
+    const [timeLeft, setTimeLeft] = useState(time)
 
     const gameOverModalRef = useRef(null)
     const playerButtonRef = useRef(null)
     // const [draw, setDraw] = useState(false)
 
-    const turnClassName = (turn === 'white') ? 'white_turn' : 'black_turn' 
+    const turnClassName = (turn === 'black') ? 'black_turn' : 'white_turn' 
     const playerClassName = (player === 1) ? 'black_pieces' : 'white_pieces'
+    const timeClassName = (player === 1) ? 'black_time' : 'white_time'
+
+    const minutes = Math.floor(timeLeft / 60)
+    const seconds = (Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60)) < 10) ? "0" + Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60)).toString() : Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60))
 
     const surrender = () => {
         setOpen(false)
@@ -23,6 +28,17 @@ function PlayerInfo({ player, turn, handlePieces }) {
     const keepPlaying = () => {
         setOpen(false)
     }
+
+    useEffect(() => {
+        if (timeLeft > 0) {
+            const timeoutID = setTimeout(() => {
+                setTimeLeft(timeLeft - 1)
+            }, 1000)
+
+            return () => clearTimeout(timeoutID)
+        }
+        return
+    }, [timeLeft])
 
     return (
         <div className="col-12 m-2">
@@ -53,7 +69,8 @@ function PlayerInfo({ player, turn, handlePieces }) {
                 </Modal.Actions>
             </Modal>
             {/* <Button className={`primary button_player ${playerClassName}`} onClick={() => setDraw(true)} disabled={draw}> Offer Draw </Button> */}
-            <Button className={`button_player button_turn ${turnClassName}`}> {turn} </Button>
+            <Button className={`button_player cursor-default  ${turnClassName}`}> { turn } </Button>
+            <Button className={`primary button_player cursor-default ${timeClassName}`}> { minutes }:{ seconds } </Button>
         </div>
     )
 }
