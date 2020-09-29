@@ -201,6 +201,11 @@ function App() {
     setTurn('white')
     setPlayer(2)
     setTimeStop(false)
+    if (time === 600) {
+      setTime(600.001)
+    } else {
+      setTime(600)
+    }
   }
 
   const freezeTimer = () => {

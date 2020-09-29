@@ -1,11 +1,24 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useReducer } from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 import GameOverModal from './GameOverModal.js'
 
 function PlayerInfo({ player, turn, handlePieces, setupNewGame, freezeTimer, time, timeStop }) {
+    const initialTimeLeft = {timeLeft: time}
+
+    const reducerTimeLeft = ((state, action) => {
+        switch(action.type) {
+            case 'decrement':
+                return {timeLeft: state.timeLeft - 1}
+            case 'reset':
+                return {timeLeft: time}
+            default:
+                throw new Error()
+        }
+    })
+
     const [open, setOpen] = useState(false)
-    const [timeLeft, setTimeLeft] = useState(600)
+    const [state, dispatch] = useReducer(reducerTimeLeft, initialTimeLeft)
 
     const gameOverModalRef = useRef(null)
     const playerButtonRef = useRef(null)
@@ -15,8 +28,8 @@ function PlayerInfo({ player, turn, handlePieces, setupNewGame, freezeTimer, tim
     const playerClassName = (player === 1) ? 'black_pieces' : 'white_pieces'
     const timeClassName = (player === 1) ? 'black_time' : 'white_time'
 
-    const minutes = Math.floor(timeLeft / 60)
-    const seconds = (Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60)) < 10) ? "0" + Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60)).toString() : Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60))
+    const minutes = Math.floor(state.timeLeft / 60)
+    const seconds = (Math.floor(state.timeLeft - (Math.floor(state.timeLeft / 60) * 60)) < 10) ? "0" + Math.floor(state.timeLeft - (Math.floor(state.timeLeft / 60) * 60)).toString() : Math.floor(state.timeLeft - (Math.floor(state.timeLeft / 60) * 60))
     
     const surrender = () => {
         setOpen(false)
@@ -38,19 +51,23 @@ function PlayerInfo({ player, turn, handlePieces, setupNewGame, freezeTimer, tim
             if (turn === 'black') countdown = true
         }
 
-        if (timeLeft > 0 && countdown && !timeStop) {
+        if (countdown && state.timeLeft > 0 && !timeStop) {
             const timeoutID = setTimeout(() => {
-                setTimeLeft(timeLeft - 1)
+                dispatch({type: 'decrement'})
             }, 1000)
 
             return () => clearTimeout(timeoutID)
-        } else if (timeLeft <= 0) {
+        } else if (state.timeLeft <= 0) {
             let info = (playerButtonRef.current.props.className.includes('black_pieces')) ? 'White wins!' : "Black wins!"
-            gameOverModalRef.current.showModal(info, 'lame clock win')
+            gameOverModalRef.current.showModal(info, 'clock win')
             return
         }
         return 
-    }, [timeLeft, player, turn, timeStop])
+    }, [state.timeLeft, player, turn, timeStop])
+
+    useEffect(() => {
+        dispatch({type: 'reset'})
+    }, [time])
 
     return (
         <div className="m-2">
@@ -82,7 +99,6 @@ function PlayerInfo({ player, turn, handlePieces, setupNewGame, freezeTimer, tim
                     </Button>
                 </Modal.Actions>
             </Modal>
-            {/* <Button className={`primary button_player ${playerClassName}`} onClick={() => setDraw(true)} disabled={draw}> Offer Draw </Button> */}
             <Button className={`button_player cursor-default  ${turnClassName}`}> { turn } </Button>
             <Button className={`primary button_player cursor-default ${timeClassName}`}> { minutes }:{ seconds } </Button>
         </div>
