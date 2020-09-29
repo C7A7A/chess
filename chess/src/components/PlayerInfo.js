@@ -3,9 +3,9 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 import GameOverModal from './GameOverModal.js'
 
-function PlayerInfo({ player, turn, handlePieces, time = 600 }) {
+function PlayerInfo({ player, turn, handlePieces, setupNewGame, freezeTimer, time, timeStop }) {
     const [open, setOpen] = useState(false)
-    const [timeLeft, setTimeLeft] = useState(time)
+    const [timeLeft, setTimeLeft] = useState(600)
 
     const gameOverModalRef = useRef(null)
     const playerButtonRef = useRef(null)
@@ -17,7 +17,7 @@ function PlayerInfo({ player, turn, handlePieces, time = 600 }) {
 
     const minutes = Math.floor(timeLeft / 60)
     const seconds = (Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60)) < 10) ? "0" + Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60)).toString() : Math.floor(timeLeft - (Math.floor(timeLeft / 60) * 60))
-
+    
     const surrender = () => {
         setOpen(false)
         // console.log(playerButtonRef.current.props.className)
@@ -30,21 +30,35 @@ function PlayerInfo({ player, turn, handlePieces, time = 600 }) {
     }
 
     useEffect(() => {
-        if (timeLeft > 0) {
+        let countdown = false
+        if (player === 2) {
+            if (turn === 'white') countdown = true
+        }
+        if (player === 1) {
+            if (turn === 'black') countdown = true
+        }
+
+        if (timeLeft > 0 && countdown && !timeStop) {
             const timeoutID = setTimeout(() => {
                 setTimeLeft(timeLeft - 1)
             }, 1000)
 
             return () => clearTimeout(timeoutID)
+        } else if (timeLeft <= 0) {
+            let info = (playerButtonRef.current.props.className.includes('black_pieces')) ? 'White wins!' : "Black wins!"
+            gameOverModalRef.current.showModal(info, 'lame clock win')
+            return
         }
-        return
-    }, [timeLeft])
+        return 
+    }, [timeLeft, player, turn, timeStop])
 
     return (
-        <div className="col-12 m-2">
+        <div className="m-2">
             <GameOverModal 
                 ref={gameOverModalRef}
-                handlePiecesChange={handlePieces}    
+                handlePiecesChange={handlePieces}   
+                freezeTimer={freezeTimer} 
+                setupNewGame={setupNewGame}
             />
             <Modal
                 onClose={() => setOpen(false)}

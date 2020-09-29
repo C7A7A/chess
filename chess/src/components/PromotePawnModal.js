@@ -16,7 +16,7 @@ import Queen from './pieces/Queen'
 import Knight from '../components/pieces/Knight.js'
 import Bishop from '../components/pieces/Bishop.js'
 
-const PromotePawnModal = forwardRef(({ pieces, handlePiecesChange }, ref) => {
+const PromotePawnModal = forwardRef(({ pieces, handlePiecesChange, unfreezeTimer }, ref) => {
     const [open, setOpen] = useState(false)
     const [promotePieces, setPromotePieces] = useState([])
     const [pawnToPromoteKey, setPawnToPromoteKey] = useState(-1)
@@ -53,7 +53,7 @@ const PromotePawnModal = forwardRef(({ pieces, handlePiecesChange }, ref) => {
         }
         
         handlePiecesChange(newPieces)
-
+        unfreezeTimer()
         setOpen(false)
     }
 

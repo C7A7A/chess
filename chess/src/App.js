@@ -18,10 +18,12 @@ function App() {
   const [player, setPlayer] = useState(2)
   const [possibleMoves, setPossibleMoves] = useState([])
   const [turn, setTurn] = useState('white')
+  const [time, setTime] = useState(600)
+  const [timeStop, setTimeStop] = useState(false)
   
   const openGameOverModalRef = useRef(null)
   const openPromotePawnModalRef = useRef(null)
-  // console.log(pieces)
+  console.log(pieces)
   // console.log('App')
 
   const handleCLickMove = (pos) => {
@@ -49,8 +51,8 @@ function App() {
         // check if piece can move to square
         if (possibleMoves.includes(pieces[pos].key)) {
           // console.log(possibleMoves, pieces[pos])
-          updatePlayer()
           updatePieces(pieces[pos].key)
+          updatePlayer()
           updateTurn()
         }
 
@@ -104,6 +106,8 @@ function App() {
     if (newPieces[key].initialSquare) {
       newPieces[key].initialSquare = false
     }
+    let prevPlayer = (player === 2 ) ? 1 : 2
+    checkPromotePawn(newPieces, prevPlayer)
 
     setPieces(newPieces)
   }
@@ -131,7 +135,6 @@ function App() {
   }
 
   useEffect( () => {
-    checkPromotePawn(pieces, player)
     checkStalemate(pieces, player)
   }, [pieces, player])
 
@@ -146,16 +149,11 @@ function App() {
       })
 
       if (pawnCanPromote.length > 0) {
+        freezeTimer()
         let player_turn = (player === 1) ? 2 : 1 
         openPromotePawnModalRef.current.showModal(player_turn, pawnCanPromote[0].key)
       }
     }
-  }
-
-  const handlePiecesChange = (newPieces) => {
-    setPieces(newPieces)
-    setTurn('white')
-    setPlayer(2)
   }
 
   const checkStalemate = (pieces, player) => {
@@ -195,6 +193,24 @@ function App() {
     }    
   }
 
+    const handlePiecesChange = (newPieces) => {
+    setPieces(newPieces)
+  }
+
+  const setupNewGame = () => {
+    setTurn('white')
+    setPlayer(2)
+    setTimeStop(false)
+  }
+
+  const freezeTimer = () => {
+    setTimeStop(true)
+  }
+
+  const unfreezeTimer = () => {
+    setTimeStop(false)
+  }
+
   return (
     <div className="App container-fluid h-100">
       <div className="row h-100">
@@ -207,17 +223,24 @@ function App() {
           <GameOverModal 
             ref={openGameOverModalRef} 
             handlePiecesChange={handlePiecesChange}
+            freezeTimer={freezeTimer}
+            setupNewGame={setupNewGame}
           />
           <PromotePawnModal 
             ref={openPromotePawnModalRef} 
             pieces={pieces} 
             handlePiecesChange={handlePiecesChange} 
+            unfreezeTimer={unfreezeTimer}
           />
 
           <PlayerInfo 
             turn={turn} 
             player={1}
             handlePieces={handlePiecesChange} 
+            setupNewGame={setupNewGame}
+            freezeTimer={freezeTimer}
+            time={time}
+            timeStop={timeStop}
           />
 
           <Board 
@@ -229,6 +252,10 @@ function App() {
             turn={turn} 
             player={2}
             handlePieces={handlePiecesChange} 
+            setupNewGame={setupNewGame}
+            freezeTimer={freezeTimer}
+            time={time}
+            timeStop={timeStop}
           />
         </div>
 

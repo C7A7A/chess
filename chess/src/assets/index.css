@@ -115,3 +115,7 @@ code {
 .cursor-default {
   cursor: default !important;
 }
+
+.left-auto {
+  left: auto !important;
+}

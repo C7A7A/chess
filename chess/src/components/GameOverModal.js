@@ -3,11 +3,10 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 import init_pieces from '../helpers/init_pieces.js'
 
-const GameOverModal = forwardRef(({ handlePiecesChange }, ref) => {
+const GameOverModal = forwardRef(({ handlePiecesChange, setupNewGame, freezeTimer }, ref) => {
     const [open, setOpen] = useState(false)
     const [winnerInfo, setWinnerInfo] = useState('')
     const [gameOverType, setGameOverType] = useState('')
-     
 
     const showModal = (winner, type) => {
         setWinnerInfo(winner)
@@ -18,6 +17,12 @@ const GameOverModal = forwardRef(({ handlePiecesChange }, ref) => {
     const rematch = () => {
         let newPieces = init_pieces()
         handlePiecesChange(newPieces)
+        setupNewGame()
+        setOpen(false)
+    }
+
+    const stopGame = () => {
+        freezeTimer()
         setOpen(false)
     }
 
@@ -30,8 +35,7 @@ const GameOverModal = forwardRef(({ handlePiecesChange }, ref) => {
     return (
         <Modal
             basic
-            open={open}
-            size='fullscreen'
+            open={open}            
         >
             <Header icon>
                 <Icon name='winner' />
@@ -41,7 +45,7 @@ const GameOverModal = forwardRef(({ handlePiecesChange }, ref) => {
                 <h3 className="text-align-center"> Do you want to rematch? </h3>
             </Modal.Content>
             <Modal.Actions className="text-align-center">
-                <Button color='red' size='big' inverted onClick={() => setOpen(false)}>
+                <Button color='red' size='big' inverted onClick={stopGame}>
                     <Icon name='remove' /> No
                 </Button>
                 <Button color='green' size='big' inverted onClick={rematch}>
